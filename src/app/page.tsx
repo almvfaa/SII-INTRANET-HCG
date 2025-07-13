@@ -6,7 +6,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Planificador de Menús</CardTitle>
+          <CardTitle>Panel Principal</CardTitle>
           <CardDescription>
             Visualice, genere y gestione los menús diarios. Haga clic en un día para ver detalles o crear un nuevo menú.
           </CardDescription>
