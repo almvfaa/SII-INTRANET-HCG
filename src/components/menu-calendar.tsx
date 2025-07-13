@@ -16,6 +16,8 @@ export function MenuCalendar() {
 
   useEffect(() => {
     // This ensures the date is only set on the client, avoiding hydration mismatch.
+    // The calendar will initially render with no date selected on the server,
+    // and then the current date will be selected on the client.
     setDate(new Date());
   }, []);
 
