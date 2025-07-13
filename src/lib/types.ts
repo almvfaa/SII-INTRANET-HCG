@@ -25,3 +25,26 @@ export interface ScheduledMenu {
   pathologyProfileId: string;
   menu: string;
 }
+
+export interface CatalogItem {
+  code: string;
+  description: string;
+  unit: string;
+  imageUrl?: string;
+}
+
+export interface Recipe {
+  id: string;
+  name: string;
+  description: string;
+  ingredients: {
+    item: CatalogItem;
+    quantity: number;
+  }[];
+}
+
+export interface MenuItem {
+  id: string;
+  name: string;
+  recipes: Recipe[];
+}
