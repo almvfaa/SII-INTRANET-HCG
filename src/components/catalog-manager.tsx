@@ -21,8 +21,8 @@ import {
 export function CatalogManager() {
   const [items, setItems] = useLocalStorage<CatalogItem[]>('catalog-items', [
     // Mock data for demonstration
-    { code: 'FRU-001', description: 'Manzana Fuji', unit: 'Kg', imageUrl: 'https://images.unsplash.com/photo-1560806887-1e4cd0b69665?q=80&w=1974&auto=format&fit=crop' },
-    { code: 'VEG-002', description: 'Zanahoria', unit: 'Kg', imageUrl: 'https://images.unsplash.com/photo-1590868309235-ea34bed7bd7f?q=80&w=1974&auto=format&fit=crop' },
+    { code: 'FRU-001', description: 'Manzana Fuji', unit: 'Kg' },
+    { code: 'VEG-002', description: 'Zanahoria', unit: 'Kg' },
     { code: 'PRO-003', description: 'Pechuga de Pollo', unit: 'Kg' },
   ]);
   const [isFormOpen, setFormOpen] = useState(false);

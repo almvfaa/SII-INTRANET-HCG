@@ -13,10 +13,11 @@ export interface FoodItem {
 }
 
 export interface Ingredient {
-  id:string;
+  id: string;
   name: string;
   description: string;
-  itemIds: string[];
+  linkedItemCodes: string[];
+  imageUrl?: string;
 }
 
 export interface ScheduledMenu {
@@ -30,7 +31,6 @@ export interface CatalogItem {
   code: string;
   description: string;
   unit: string;
-  imageUrl?: string;
 }
 
 export interface Recipe {

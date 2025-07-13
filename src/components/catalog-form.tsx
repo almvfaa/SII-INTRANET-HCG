@@ -21,7 +21,6 @@ const formSchema = z.object({
   code: z.string().min(1, "El código es requerido"),
   description: z.string().min(1, "La descripción es requerida"),
   unit: z.string().min(1, "La unidad es requerida"),
-  imageUrl: z.string().url("Debe ser una URL válida").optional().or(z.literal('')),
 });
 
 type CatalogFormValues = z.infer<typeof formSchema>;
@@ -39,7 +38,6 @@ export function CatalogForm({ onSubmit, initialData, onCancel }: CatalogFormProp
       code: "",
       description: "",
       unit: "",
-      imageUrl: "",
     },
   });
 
@@ -91,19 +89,6 @@ export function CatalogForm({ onSubmit, initialData, onCancel }: CatalogFormProp
                   <FormLabel>Unidad de Medida</FormLabel>
                   <FormControl>
                     <Input placeholder="Ej: Kg, Un, L" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="imageUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>URL de Imagen (Opcional)</FormLabel>
-                  <FormControl>
-                    <Input placeholder="https://ejemplo.com/imagen.jpg" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

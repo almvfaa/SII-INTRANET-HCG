@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Trash2, Pencil } from "lucide-react";
-import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 interface CatalogTableProps {
@@ -34,7 +33,6 @@ export function CatalogTable({ items, onEdit, onDelete }: CatalogTableProps) {
                 <TableHead className="w-[100px]">Código</TableHead>
                 <TableHead>Descripción</TableHead>
                 <TableHead>Unidad</TableHead>
-                <TableHead>Imagen</TableHead>
                 <TableHead className="text-right">Acciones</TableHead>
               </TableRow>
             </TableHeader>
@@ -45,22 +43,6 @@ export function CatalogTable({ items, onEdit, onDelete }: CatalogTableProps) {
                     <TableCell className="font-medium">{item.code}</TableCell>
                     <TableCell>{item.description}</TableCell>
                     <TableCell>{item.unit}</TableCell>
-                    <TableCell>
-                      {item.imageUrl ? (
-                        <div className="relative h-16 w-16">
-                           <Image
-                            src={item.imageUrl}
-                            alt={item.description}
-                            fill
-                            className="rounded-md object-cover"
-                          />
-                        </div>
-                      ) : (
-                        <div className="flex h-16 w-16 items-center justify-center rounded-md bg-muted text-xs text-muted-foreground">
-                          Sin imagen
-                        </div>
-                      )}
-                    </TableCell>
                     <TableCell className="text-right">
                       <Button variant="ghost" size="icon" onClick={() => onEdit(item)}>
                         <Pencil className="h-4 w-4" />
@@ -73,7 +55,7 @@ export function CatalogTable({ items, onEdit, onDelete }: CatalogTableProps) {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={5} className="h-24 text-center">
+                  <TableCell colSpan={4} className="h-24 text-center">
                     No hay artículos en el catálogo.
                   </TableCell>
                 </TableRow>
