@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import type { ScheduledMenu, Profile } from '@/lib/types';
 import { Button } from '@/components/ui/button';
@@ -19,10 +19,14 @@ export function OrderList() {
   const [serviceProfiles] = useLocalStorage<Profile[]>('service-profiles', []);
   const [pathologyProfiles] = useLocalStorage<Profile[]>('pathology-profiles', []);
   
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 30),
-  });
+  const [date, setDate] = useState<DateRange | undefined>(undefined);
+
+  useEffect(() => {
+    setDate({
+      from: new Date(),
+      to: addDays(new Date(), 30),
+    });
+  }, []);
 
   const filteredMenus = useMemo(() => {
     if (!date?.from || !date?.to) return [];
