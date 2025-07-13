@@ -36,9 +36,9 @@ const CalendarCore = dynamic(() => import("./calendar-core").then(mod => mod.Cal
   ),
 })
 
-const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>((props, ref) => {
-    return <CalendarCore {...props} ref={ref} />;
-});
+const Calendar = (props: CalendarProps) => {
+    return <CalendarCore {...props} />;
+};
 
 
 Calendar.displayName = "Calendar"
