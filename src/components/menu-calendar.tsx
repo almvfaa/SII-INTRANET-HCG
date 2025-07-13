@@ -1,0 +1,76 @@
+"use client";
+
+import React, { useState, useMemo } from 'react';
+import { Calendar } from "@/components/ui/calendar";
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+import type { ScheduledMenu, Profile } from '@/lib/types';
+import { MenuDialog } from './menu-dialog';
+import { format, isSameDay } from 'date-fns';
+
+export function MenuCalendar() {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+  const [scheduledMenus, setScheduledMenus] = useLocalStorage<ScheduledMenu[]>('scheduled-menus', []);
+  const [serviceProfiles] = useLocalStorage<Profile[]>('service-profiles', []);
+
+  const handleDayClick = (day: Date) => {
+    setSelectedDate(day);
+    setDialogOpen(true);
+  };
+  
+  const selectedMenu = useMemo(() => {
+    if (!selectedDate) return undefined;
+    const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+    return scheduledMenus.find(m => m.date === formattedDate);
+  }, [selectedDate, scheduledMenus]);
+  
+  const menuDays = useMemo(() => {
+    return scheduledMenus.map(m => new Date(m.date));
+  }, [scheduledMenus]);
+
+  const modifiers = {
+    hasMenu: (day: Date) => menuDays.some(menuDay => isSameDay(day, menuDay)),
+  };
+
+  const modifiersStyles = {
+    hasMenu: {
+      fontWeight: 'bold',
+      color: 'hsl(var(--primary))',
+      textDecoration: 'underline',
+      textDecorationStyle: 'wavy' as const,
+      textUnderlineOffset: '0.2em'
+    },
+  };
+
+  return (
+    <>
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+        onDayClick={handleDayClick}
+        className="rounded-md border w-full"
+        modifiers={modifiers}
+        modifiersStyles={modifiersStyles}
+        footer={
+          <div className="text-sm text-muted-foreground p-4 border-t">
+            <div className="flex items-center gap-2">
+              <span style={modifiersStyles.hasMenu} className="font-bold underline">Día con menú</span>
+            </div>
+            <p className="mt-2">Seleccione una fecha para ver o generar un menú.</p>
+          </div>
+        }
+      />
+      <MenuDialog
+        isOpen={isDialogOpen}
+        setOpen={setDialogOpen}
+        date={selectedDate}
+        menu={selectedMenu}
+        scheduledMenus={scheduledMenus}
+        setScheduledMenus={setScheduledMenus}
+      />
+    </>
+  );
+}
