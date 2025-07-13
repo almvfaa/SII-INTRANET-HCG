@@ -16,6 +16,7 @@ export function MenuCalendar() {
   const [serviceProfiles] = useLocalStorage<Profile[]>('service-profiles', []);
 
   useEffect(() => {
+    // This ensures the date is only set on the client, avoiding hydration mismatch.
     setDate(new Date());
   }, []);
 
