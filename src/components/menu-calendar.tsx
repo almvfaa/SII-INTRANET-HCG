@@ -3,7 +3,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Calendar } from "@/components/ui/calendar";
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
-import type { ScheduledMenu, Profile } from '@/lib/types';
+import type { ScheduledMenu } from '@/lib/types';
 import { MenuDialog } from './menu-dialog';
 import { format, isSameDay } from 'date-fns';
 
@@ -13,7 +13,6 @@ export function MenuCalendar() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
   const [scheduledMenus, setScheduledMenus] = useLocalStorage<ScheduledMenu[]>('scheduled-menus', []);
-  const [serviceProfiles] = useLocalStorage<Profile[]>('service-profiles', []);
 
   useEffect(() => {
     // This ensures the date is only set on the client, avoiding hydration mismatch.
@@ -32,7 +31,12 @@ export function MenuCalendar() {
   }, [selectedDate, scheduledMenus]);
   
   const menuDays = useMemo(() => {
-    return scheduledMenus.map(m => new Date(m.date));
+    return scheduledMenus.map(m => {
+        // The date from local storage might be a string, so we need to parse it.
+        // Adding a day to correct for timezone issues when creating the date object.
+        const [year, month, day] = m.date.split('-').map(Number);
+        return new Date(year, month - 1, day);
+    });
   }, [scheduledMenus]);
 
   const modifiers = {
