@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Calendar } from "@/components/ui/calendar";
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import type { ScheduledMenu, Profile } from '@/lib/types';
@@ -8,12 +8,16 @@ import { MenuDialog } from './menu-dialog';
 import { format, isSameDay } from 'date-fns';
 
 export function MenuCalendar() {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(undefined);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
   const [scheduledMenus, setScheduledMenus] = useLocalStorage<ScheduledMenu[]>('scheduled-menus', []);
   const [serviceProfiles] = useLocalStorage<Profile[]>('service-profiles', []);
+
+  useEffect(() => {
+    setDate(new Date());
+  }, []);
 
   const handleDayClick = (day: Date) => {
     setSelectedDate(day);
