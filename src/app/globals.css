@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 150 100% 98%;
-    --foreground: 224 71% 4%;
-    --card: 150 100% 98%;
-    --card-foreground: 224 71% 4%;
-    --popover: 150 100% 98%;
-    --popover-foreground: 224 71% 4%;
-    --primary: 120 25% 65%;
-    --primary-foreground: 120 25% 15%;
-    --secondary: 150 60% 95%;
-    --secondary-foreground: 224 71% 4%;
-    --muted: 150 30% 93%;
-    --muted-foreground: 224 71% 25%;
-    --accent: 60 90% 85%;
-    --accent-foreground: 60 50% 10%;
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 210 90% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 150 70% 40%;
+    --secondary-foreground: 150 40% 98%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 150 60% 95%;
+    --accent-foreground: 150 50% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 150 20% 88%;
-    --input: 150 20% 92%;
-    --ring: 120 25% 65%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 90% 50%;
     --radius: 0.5rem;
   }
  
@@ -33,19 +33,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
-    --primary: 120 25% 70%;
-    --primary-foreground: 120 25% 10%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --primary: 210 90% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 150 70% 40%;
+    --secondary-foreground: 150 40% 98%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 60 90% 85%;
-    --accent-foreground: 60 50% 10%;
+    --accent: 150 60% 95%;
+    --accent-foreground: 150 50% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 217 33% 22%;
     --input: 217 33% 22%;
-    --ring: 120 25% 70%;
+    --ring: 210 90% 50%;
   }
 }
 
